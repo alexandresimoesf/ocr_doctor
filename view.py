@@ -10,7 +10,6 @@ NSEW = tk.NSEW
 
 class View(tk.Tk):
 
-
     def __labels(self):
         self.lblfolderText = StringVar()
         self.lblfolderText.set('0 arquivos adicionados')
@@ -43,12 +42,14 @@ class View(tk.Tk):
         self.menu.add_cascade(label="Arquivo", menu=self.file)
         self.file.add_command(label="Abrir", command=lambda: self.controller.setar_destino(filedialog.askdirectory()))
 
-
     def text(self, widget, texto):
         widget.set(texto)
 
     def allow(self):
         self.btnOcr['state'] = 'active'
+
+    def teste(self, a):
+        print(a)
 
     def main(self):
         self.mainloop()
@@ -61,7 +62,6 @@ class View(tk.Tk):
         self.title('Doctor OCR')
         # self.geometry('500x500')
         # self.resizable(False, False)
-
 
         self.__menu()
         self.__botoes()

@@ -2,14 +2,14 @@ import os
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
 
+
 class Model:
 
     def ler(self, arquivo):
         if os.path.splitext(arquivo)[1][1:] == 'pdf':
-            Pdf.ler_pdf(self, arquivo)
+            return Pdf.ler_pdf(self, arquivo)
         else:
-            Img.ler_imagem(self, arquivo)
-
+            return Img.ler_imagem(self, arquivo)
 
     def contar_arquivos(self) -> int:
         '''
