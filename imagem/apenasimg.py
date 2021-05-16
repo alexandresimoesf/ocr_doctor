@@ -11,16 +11,17 @@ except ImportError:
 class ImgReader:
     ocr.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
-    def ler_imagem(self, img):
+    @staticmethod
+    def ler_imagem(img):
         '''
         :param filename: Pasta onde estão os arquivos
         :return: Retorna o texto que está na imagem com tratamento
         '''
 
-        self.imagem = Image.open(img).convert('RGB')
+        imagem = Image.open(img).convert('RGB')
 
         # convertendo em um array editável de numpy[x, y, CANALS]
-        npimagem = np.asarray(self.imagem).astype(np.uint8)
+        npimagem = np.asarray(imagem).astype(np.uint8)
 
         # diminuição dos ruidos antes da binarização
         npimagem[:, :, 0] = 0  # zerando o canal R (RED)

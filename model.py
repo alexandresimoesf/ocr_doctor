@@ -5,11 +5,13 @@ from imagem.apenasimg import ImgReader as Img
 
 class Model:
 
-    def ler(self, arquivo):
+    @staticmethod
+    def ler(arquivo):
         if os.path.splitext(arquivo)[1][1:] == 'pdf':
-            return Pdf.ler_pdf(self, arquivo)
+            return Pdf.ler_pdf(arquivo)
         else:
-            return Img.ler_imagem(self, arquivo)
+            return Img.ler_imagem(arquivo)
+
 
     def contar_arquivos(self) -> int:
         '''

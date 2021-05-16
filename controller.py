@@ -1,6 +1,7 @@
 from view import View
 from model import Model
 
+
 class Controller:
 
     def main(self):
@@ -14,13 +15,13 @@ class Controller:
 
     def iniciar_ocr(self):
         for i in self.modelo.arquivosPermitidos:
-            self.visual.teste(self.modelo.ler(self.modelo.destino+'/'+i))
+            self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
 
     def __init__(self):
         self.visual = View(self)
         self.modelo = Model()
 
+
 if __name__ == '__main__':
     software = Controller()
     software.main()
-
