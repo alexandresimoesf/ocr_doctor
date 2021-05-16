@@ -2,6 +2,7 @@ import pytesseract as ocr
 import os
 import numpy as np
 import cv2
+import PyPDF2
 
 
 try:
@@ -13,7 +14,23 @@ except ImportError:
 class Model:
     ocr.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
+    def ler_pdf(self):
+        '''
+        :return: Retorna o texto que está no pdf
+        '''
+        file = open('example.pdf', 'rb')
+
+        # creating a pdf reader object
+        fileReader = PyPDF2.PdfFileReader(file)
+
+        # return the number of pages in pdf file
+        return fileReader.numPages
+
     def ler_imagem(self, img):
+        '''
+        :param filename: Pasta onde estão os arquivos
+        :return: Retorna o texto que está na imagem com tratamento
+        '''
         self.imagem = Image.open(img).convert('RGB')
 
         # convertendo em um array editável de numpy[x, y, CANALS]
@@ -40,6 +57,12 @@ class Model:
 
         # impressão do resultado
         return phrase
+
+    def ler(self, arquivo):
+        if os.path.splitext(arquivo)[1][1:] == 'pdf':
+            self.ler_pdf(arquivo)
+        else:
+            self.ler_imagem(arquivo)
 
     def ocr_core(self, filename) -> str:
         '''

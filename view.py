@@ -1,10 +1,11 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar
+from tkinter import Button, Menu, filedialog, Label, StringVar, Entry
 
 E = tk.E
 W = tk.W
 N = tk.N
 S = tk.S
+NSEW = tk.NSEW
 
 
 class View(tk.Tk):
@@ -42,6 +43,7 @@ class View(tk.Tk):
         self.menu.add_cascade(label="Arquivo", menu=self.file)
         self.file.add_command(label="Abrir", command=lambda: self.controller.setar_destino(filedialog.askdirectory()))
 
+
     def text(self, widget, texto):
         widget.set(texto)
 
@@ -57,7 +59,8 @@ class View(tk.Tk):
         self.controller = controller
 
         self.title('Doctor OCR')
-
+        self.geometry('500x500')
+        self.resizable(False, False)
 
 
         self.__menu()
