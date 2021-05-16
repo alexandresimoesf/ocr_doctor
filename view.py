@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar, Entry
+from tkinter import Button, Menu, filedialog, Label, StringVar
 
 E = tk.E
 W = tk.W
@@ -59,8 +59,8 @@ class View(tk.Tk):
         self.controller = controller
 
         self.title('Doctor OCR')
-        self.geometry('500x500')
-        self.resizable(False, False)
+        # self.geometry('500x500')
+        # self.resizable(False, False)
 
 
         self.__menu()
