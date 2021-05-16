@@ -24,4 +24,3 @@ if __name__ == '__main__':
     software = Controller()
     software.main()
 
-# print(ocr_core('documentos/saoluis.jpg'))
