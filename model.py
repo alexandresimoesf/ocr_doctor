@@ -39,7 +39,7 @@ class Model:
         phrase = ocr.image_to_string(binimagem)
 
         # impressão do resultado
-        print(phrase)
+        return phrase
 
     def ocr_core(self, filename) -> str:
         '''
@@ -47,7 +47,7 @@ class Model:
         :return: Retorna o texto que está na imagem
         '''
         text = ocr.image_to_string(Image.open(filename))
-        print(text)
+        return text
 
     def contar_arquivos(self) -> int:
         '''
