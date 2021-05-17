@@ -1,8 +1,11 @@
 import os
 from typing import List, Tuple
+import configparser
+
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
-import configparser
+from base.facade import Repository
+
 
 
 class Model:
