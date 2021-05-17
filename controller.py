@@ -7,8 +7,11 @@ class Controller:
     def main(self):
         self.visual.main()
 
-    def top_level_variables(self):
+    def top_read_level_variables(self):
         return self.modelo.config_file_get()
+
+    def top_set_level_variables(self):
+        return self.modelo.config_file_set()
 
     def top_level_login(self):
         pass

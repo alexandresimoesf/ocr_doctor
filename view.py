@@ -47,7 +47,7 @@ class View(tk.Tk):
         self.db.add_command(label='Config', command=lambda: self.__top_level_db())
 
     def __top_level_db(self):
-        self.topLevelVariables = self.controller.top_level_variables()
+        self.topLevelVariables = self.controller.top_read_level_variables()
 
         self.topLevel = Toplevel()
         self.topLevel.title('DB')
@@ -67,7 +67,7 @@ class View(tk.Tk):
         self.topLevelVarPass.set(self.topLevelVariables[3:][0])
 
         self.topLevelVarConectar = StringVar()
-        self.topLevelVarConectar.set('Teste')
+        self.topLevelVarConectar.set('...')
 
         self.topLabelHost = Label(self.topLevel, text='Host :')
         self.topLabelHost.grid(row=0, column=0, pady=4, padx=4, sticky=W)
