@@ -67,4 +67,3 @@ class View(tk.Tk):
         self.__botoes()
         self.__entradas()
         self.__labels()
-k.E

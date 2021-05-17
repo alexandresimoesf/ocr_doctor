@@ -12,13 +12,13 @@ class ImgReader:
     ocr.pytesseract.tesseract_cmd = 'C:\\Program Files\\Tesseract-OCR\\tesseract.exe'
 
     @staticmethod
-    def ler_imagem(img):
+    def ler_imagem(arquivo):
         '''
         :param filename: Pasta onde estão os arquivos
         :return: Retorna o texto que está na imagem com tratamento
         '''
 
-        imagem = Image.open(img).convert('RGB')
+        imagem = Image.open(arquivo).convert('RGB')
 
         # convertendo em um array editável de numpy[x, y, CANALS]
         npimagem = np.asarray(imagem).astype(np.uint8)
