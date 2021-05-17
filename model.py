@@ -1,9 +1,25 @@
 import os
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
+import configparser
 
 
 class Model:
+
+    @staticmethod
+    def config_file_get():
+        config = configparser.ConfigParser()
+        host = config['mysqlDB']['host'],
+        user = config['mysqlDB']['user'],
+        passwd = config['mysqlDB']['pass'],
+        db = config['mysqlDB']['db']
+        return host, user, passwd, db
+
+    @staticmethod
+    def config_file_set():
+        config = configparser.ConfigParser()
+        config.read('config.ini')
+        config.set('mysqlDB', 'host', '0.0.0.0')
 
     @staticmethod
     def ler(arquivo):

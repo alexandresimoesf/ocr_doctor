@@ -18,7 +18,6 @@ class Controller:
         for i in self.modelo.arquivosPermitidos:
             self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
 
-
     def __init__(self):
         self.visual = View(self)
         self.modelo = Model()
