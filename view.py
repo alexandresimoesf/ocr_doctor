@@ -107,10 +107,10 @@ class View(tk.Tk):
     def text(self, widget, texto):
         widget.set(texto)
 
-    def allow(self, widget):
+    def allow_button(self, widget):
         widget['state'] = 'active'
 
-    def forbid(self, widget):
+    def forbid_button(self, widget):
         widget['state'] = 'disabled'
 
     def teste(self, a):
