@@ -3,7 +3,8 @@ import PyPDF2 as pdf
 
 class PdfReader:
 
-    def ler_pdf(self, arquivo):
+    @staticmethod
+    def ler_pdf(arquivo):
         '''
         :return: Retorna o texto que está no pdf
         '''

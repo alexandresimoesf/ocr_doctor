@@ -12,7 +12,6 @@ class Model:
         else:
             return Img.ler_imagem(arquivo)
 
-
     def contar_arquivos(self) -> int:
         '''
         :return: Retorna a contagem de todos os arquivos na pasta
