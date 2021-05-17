@@ -9,17 +9,21 @@ class Model:
     @staticmethod
     def config_file_get():
         config = configparser.ConfigParser()
-        host = config['mysqlDB']['host'],
-        user = config['mysqlDB']['user'],
-        passwd = config['mysqlDB']['pass'],
-        db = config['mysqlDB']['db']
-        return host, user, passwd, db
+        config.read('config.ini')
+        host = config['dbDoctor']['host'],
+        user = config['dbDoctor']['user'],
+        passwd = config['dbDoctor']['password'],
+        db = config['dbDoctor']['db']
+        return host, db, user, passwd
 
     @staticmethod
     def config_file_set():
         config = configparser.ConfigParser()
         config.read('config.ini')
-        config.set('mysqlDB', 'host', '0.0.0.0')
+        config.set('dbDoctor', 'host', '0.0.0.0')
+        config.set('dbDoctor', 'user', '0.0.0.0')
+        config.set('dbDoctor', 'password', '0.0.0.0')
+        config.set('dbDoctor', 'db', '0.0.0.0')
 
     @staticmethod
     def ler(arquivo):

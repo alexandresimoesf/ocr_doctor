@@ -7,6 +7,12 @@ class Controller:
     def main(self):
         self.visual.main()
 
+    def top_level_variables(self):
+        return self.modelo.config_file_get()
+
+    def top_level_login(self):
+        pass
+
     def setar_destino(self, arquivo):
         self.modelo.destino = arquivo
         self.visual.text(self.visual.lblfolderText, self.modelo.destino)
