@@ -14,8 +14,10 @@ class Controller:
         self.visual.allow()
 
     def iniciar_ocr(self):
+        self.visual.forbid()
         for i in self.modelo.arquivosPermitidos:
             self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
+
 
     def __init__(self):
         self.visual = View(self)

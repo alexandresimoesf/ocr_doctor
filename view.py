@@ -1,11 +1,11 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar
+from tkinter import Button, Menu, filedialog, Label, StringVar, Toplevel, Entry
 
 E = tk.E
 W = tk.W
 N = tk.N
 S = tk.S
-NSEW = tk.NSEW
+EW = tk.EW
 
 
 class View(tk.Tk):
@@ -42,14 +42,46 @@ class View(tk.Tk):
         self.menu.add_cascade(label="Arquivo", menu=self.file)
         self.file.add_command(label="Abrir", command=lambda: self.controller.setar_destino(filedialog.askdirectory()))
 
+        self.db = Menu(self.menu, tearoff=0)
+        self.menu.add_cascade(label='DB', menu=self.db)
+        self.db.add_command(label='Config', command=lambda: self.__top_db())
+
+    def __top_db(self):
+        self.topLevel = Toplevel()
+        self.topLevel.title('DB')
+        self.topLevel.geometry('200x100')
+        self.topLevel.resizable(False, False)
+
+        self.topLevelVarConectar = StringVar()
+        self.topLevelVarConectar.set('Teste')
+
+        self.topLabelUser = Label(self.topLevel, text='Usuario :')
+        self.topLabelUser.grid(row=0, column=0, pady=4, padx=4, sticky=W)
+        self.topEntryUser = Entry(self.topLevel)
+        self.topEntryUser.grid(row=0, column=2, pady=4, padx=4, sticky=W)
+
+        self.topLabelUserPass = Label(self.topLevel, text='Senha :')
+        self.topLabelUserPass.grid(row=1, column=0, pady=4, padx=4, sticky=W)
+        self.topEntryUserPass = Entry(self.topLevel)
+        self.topEntryUserPass.grid(row=1, column=2, pady=4, padx=4, sticky=W)
+
+        self.topLevelBtnConectar = Button(self.topLevel, text='Conectar')
+        self.topLevelBtnConectar.grid(row=2, column=0, pady=4, padx=4, sticky=W)
+        self.topLabelConectar = Label(self.topLevel, textvariable=self.topLevelVarConectar)
+        self.topLabelConectar.grid(row=2, column=2, pady=4, padx=4, sticky=W)
+
+
     def text(self, widget, texto):
         widget.set(texto)
 
     def allow(self):
         self.btnOcr['state'] = 'active'
 
+    def forbid(self):
+        self.btnOcr['state'] = 'disabled'
+
     def teste(self, a):
-        print(a)
+        print(a.split())
 
     def main(self):
         self.mainloop()
