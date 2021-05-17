@@ -1,29 +1,33 @@
 from view import View
 from model import Model
+from typing import List, Tuple
 
+def top_set_level_variables(func):
+    def wrapper(self, *args):
+        return func(self, self.modelo.config_file_set(*args))
+    return wrapper
 
 class Controller:
 
     def main(self):
         self.visual.main()
 
-    def top_read_level_variables(self):
+    @top_set_level_variables
+    def top_level_login(self, arg):
+        self.visual.forbid(self.visual.topLevelBtnConectar)
+        self.visual.text(self.visual.topLevelVarConectar, arg)
+
+    def top_read_level_variables(self) -> List[Tuple[str, str]]:
         return self.modelo.config_file_get()
-
-    def top_set_level_variables(self):
-        return self.modelo.config_file_set()
-
-    def top_level_login(self):
-        pass
 
     def setar_destino(self, arquivo):
         self.modelo.destino = arquivo
         self.visual.text(self.visual.lblfolderText, self.modelo.destino)
         self.visual.text(self.visual.lblPastaText, self.modelo.contar_arquivos())
-        self.visual.allow()
+        self.visual.allow(self.visual.btnOcr)
 
     def iniciar_ocr(self):
-        self.visual.forbid()
+        self.visual.forbid(self.visual.btnOcr)
         for i in self.modelo.arquivosPermitidos:
             self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
 

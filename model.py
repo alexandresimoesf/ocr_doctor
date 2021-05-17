@@ -1,4 +1,5 @@
 import os
+from typing import List, Tuple
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
 import configparser
@@ -7,30 +8,33 @@ import configparser
 class Model:
 
     @staticmethod
-    def config_file_get():
+    def config_file_get() -> List[Tuple[str, str]]:
         config = configparser.ConfigParser()
         config.read('config.ini')
-        host = config['dbDoctor']['host'],
-        user = config['dbDoctor']['user'],
-        passwd = config['dbDoctor']['password'],
-        db = config['dbDoctor']['db']
-        return host, db, user, passwd
+        return config.items('dbDoctor')
 
     @staticmethod
-    def config_file_set():
+    def config_file_set(*args):
         config = configparser.ConfigParser()
         config.read('config.ini')
-        config.set('dbDoctor', 'host', '0.0.0.0')
-        config.set('dbDoctor', 'user', '0.0.0.0')
-        config.set('dbDoctor', 'password', '0.0.0.0')
-        config.set('dbDoctor', 'db', '0.0.0.0')
+        config.set('dbDoctor', 'host', args[0:][0])
+        config.set('dbDoctor', 'user', args[1:][0])
+        config.set('dbDoctor', 'password', args[2:][0])
+        config.set('dbDoctor', 'db', args[3:][0])
+        with open(r'config.ini', 'w') as configfile:
+            config.write(configfile)
+        configfile.close()
+        return 'Falta implementar DB'
 
     @staticmethod
-    def ler(arquivo):
+    def ler(arquivo) -> List:
         if os.path.splitext(arquivo)[1][1:] == 'pdf':
             return Pdf.ler_pdf(arquivo)
         else:
             return Img.ler_imagem(arquivo)
+
+    def login_bd_postgres(self):
+        pass
 
     def contar_arquivos(self) -> int:
         '''

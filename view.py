@@ -47,7 +47,7 @@ class View(tk.Tk):
         self.db.add_command(label='Config', command=lambda: self.__top_level_db())
 
     def __top_level_db(self):
-        self.topLevelVariables = self.controller.top_read_level_variables()
+        self.topLevelVariables = list(self.controller.top_read_level_variables())
 
         self.topLevel = Toplevel()
         self.topLevel.title('DB')
@@ -55,16 +55,16 @@ class View(tk.Tk):
         self.topLevel.resizable(False, False)
 
         self.topLevelVarHost = StringVar()
-        self.topLevelVarHost.set(self.topLevelVariables[0:][0])
+        self.topLevelVarHost.set(self.topLevelVariables[0][1])
 
         self.topLevelVarDb = StringVar()
-        self.topLevelVarDb.set(self.topLevelVariables[1:][0])
+        self.topLevelVarDb.set(self.topLevelVariables[1][1])
 
         self.topLevelVarUser = StringVar()
-        self.topLevelVarUser.set(self.topLevelVariables[2:][0])
+        self.topLevelVarUser.set(self.topLevelVariables[2][1])
 
         self.topLevelVarPass = StringVar()
-        self.topLevelVarPass.set(self.topLevelVariables[3:][0])
+        self.topLevelVarPass.set(self.topLevelVariables[3][1])
 
         self.topLevelVarConectar = StringVar()
         self.topLevelVarConectar.set('...')
@@ -84,12 +84,22 @@ class View(tk.Tk):
         self.topEntryUser = Entry(self.topLevel, textvariable=self.topLevelVarUser)
         self.topEntryUser.grid(row=2, column=2, pady=4, padx=4, sticky=W)
 
-        self.topLabelUserPass = Label(self.topLevel, text='Senha :')
-        self.topLabelUserPass.grid(row=3, column=0, pady=4, padx=4, sticky=W)
-        self.topEntryUserPass = Entry(self.topLevel, textvariable=self.topLevelVarPass)
-        self.topEntryUserPass.grid(row=3, column=2, pady=4, padx=4, sticky=W)
+        self.topLabelPass = Label(self.topLevel, text='Senha :')
+        self.topLabelPass.grid(row=3, column=0, pady=4, padx=4, sticky=W)
+        self.topEntryPass = Entry(self.topLevel, textvariable=self.topLevelVarPass)
+        self.topEntryPass.grid(row=3, column=2, pady=4, padx=4, sticky=W)
 
-        self.topLevelBtnConectar = Button(self.topLevel, text='Conectar', state='disabled', command=lambda: self.controller.top_level_login())
+        self.topLevelBtnConectar = Button(
+            self.topLevel,
+            text='Conectar',
+            state='active',
+            command=lambda: self.controller.top_level_login(
+                self.topLevelVarHost.get(),
+                self.topLevelVarUser.get(),
+                self.topLevelVarPass.get(),
+                self.topLevelVarDb.get()
+            )
+        )
         self.topLevelBtnConectar.grid(row=4, column=0, pady=4, padx=4, sticky=W)
         self.topLabelConectar = Label(self.topLevel, textvariable=self.topLevelVarConectar)
         self.topLabelConectar.grid(row=4, column=2, pady=4, padx=4, sticky=W)
@@ -97,11 +107,11 @@ class View(tk.Tk):
     def text(self, widget, texto):
         widget.set(texto)
 
-    def allow(self):
-        self.btnOcr['state'] = 'active'
+    def allow(self, widget):
+        widget['state'] = 'active'
 
-    def forbid(self):
-        self.btnOcr['state'] = 'disabled'
+    def forbid(self, widget):
+        widget['state'] = 'disabled'
 
     def teste(self, a):
         print(a.split())
