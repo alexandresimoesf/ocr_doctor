@@ -5,7 +5,6 @@ E = tk.E
 W = tk.W
 N = tk.N
 S = tk.S
-EW = tk.EW
 
 
 class View(tk.Tk):
@@ -125,10 +124,11 @@ class View(tk.Tk):
         self.controller = controller
 
         self.title('Doctor OCR')
-        # self.geometry('500x500')
-        # self.resizable(False, False)
+        self.geometry('400x150')
+        self.resizable(False, False)
 
         self.__menu()
         self.__botoes()
         self.__entradas()
         self.__labels()
+

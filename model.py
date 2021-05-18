@@ -7,7 +7,6 @@ from imagem.apenasimg import ImgReader as Img
 from base.facade import Repository
 
 
-
 class Model:
 
     @staticmethod
