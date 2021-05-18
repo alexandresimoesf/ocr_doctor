@@ -1,6 +1,6 @@
 import tkinter as tk
 from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar,\
-                    Toplevel, Entry, Checkbutton, LabelFrame
+                    Toplevel, Entry, Checkbutton, LabelFrame, messagebox
 
 E = tk.E
 W = tk.W
@@ -10,9 +10,12 @@ S = tk.S
 
 class View(tk.Tk):
 
+    def message(self, func, msg):
+        self.alert = messagebox.showwarning(func.__name__, msg)
+
     def __label_frame(self):
         self.labelFramePastaArquivos = LabelFrame(text='Pasta e arquivos')
-        self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, sticky=W)
+        self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, columnspan=2, sticky=W)
 
         self.labelFrameCheckButton = LabelFrame(text='Arquivos Permitos')
         self.labelFrameCheckButton.grid(row=2, column=0, pady=4, padx=4, sticky=W)
@@ -70,7 +73,7 @@ class View(tk.Tk):
         self.checkEditPdf = Checkbutton(self.labelFrameCheckButton,
                                         text='PDF',
                                         var=self.checkValuePdf,
-                                        command=lambda: print('pdf')
+                                        command=lambda: self.controller.setar_arquivos_permitidos('pdf')
                                         )
         self.checkEditPdf.grid(row=0, column=0, sticky=W)
 
@@ -79,7 +82,7 @@ class View(tk.Tk):
         self.checkEditJpg = Checkbutton(self.labelFrameCheckButton,
                                         text='JPG',
                                         var=self.checkValueJpg,
-                                        command=lambda: print('Jpg')
+                                        command=lambda: self.controller.setar_arquivos_permitidos('jpg')
                                         )
         self.checkEditJpg.grid(row=0, column=1, sticky=W)
 
@@ -88,7 +91,7 @@ class View(tk.Tk):
         self.checkEditJpeg = Checkbutton(self.labelFrameCheckButton,
                                          text='JPEG',
                                          var=self.checkValueJpeg,
-                                         command=lambda: print('Jpeg')
+                                         command=lambda: self.controller.setar_arquivos_permitidos('jpeg')
                                          )
         self.checkEditJpeg.grid(row=1, column=0, sticky=W)
 
@@ -97,7 +100,7 @@ class View(tk.Tk):
         self.checkEditPng = Checkbutton(self.labelFrameCheckButton,
                                         text='PNG',
                                         var=self.checkValuePng,
-                                        command=lambda: print('Png')
+                                        command=lambda: self.controller.setar_arquivos_permitidos('png')
                                         )
         self.checkEditPng.grid(row=1, column=1, sticky=W)
 

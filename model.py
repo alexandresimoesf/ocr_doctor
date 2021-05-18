@@ -49,6 +49,12 @@ class Model:
                 self.arquivosPermitidos.append(i)
         return len(self.arquivosPermitidos)
 
+    def arquivos_permitidos(self, arquivo):
+        if arquivo in self.extensoesPermitidos:
+            self.extensoesPermitidos.remove(arquivo)
+        else:
+            self.extensoesPermitidos.append(arquivo)
+
     def __init__(self):
         self.arquivosPermitidos: list = []
         self.extensoesPermitidos: list = ['pdf', 'jpg', 'png', 'jpeg']
