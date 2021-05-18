@@ -1,5 +1,6 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar, Toplevel, Entry, Checkbutton, LabelFrame
+from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar,\
+                    Toplevel, Entry, Checkbutton, LabelFrame
 
 E = tk.E
 W = tk.W
@@ -14,10 +15,10 @@ class View(tk.Tk):
         self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, sticky=W)
 
         self.labelFrameCheckButton = LabelFrame(text='Arquivos Permitos')
-        self.labelFrameCheckButton.grid(row=3, column=0, pady=4, padx=4, sticky=W)
+        self.labelFrameCheckButton.grid(row=2, column=0, pady=4, padx=4, sticky=W)
 
         self.labelFrameInformacoes = LabelFrame(text='Informações')
-        self.labelFrameInformacoes.grid(row=3, column=1, pady=4, padx=4, sticky=W)
+        self.labelFrameInformacoes.grid(row=2, column=1, pady=4, padx=4, sticky=W)
 
     def __labels(self):
         self.lblfolderText = StringVar()
@@ -66,22 +67,38 @@ class View(tk.Tk):
     def __check_button(self):
         self.checkValuePdf = BooleanVar()
         self.checkValuePdf.set(True)
-        self.checkEditPdf = Checkbutton(self.labelFrameCheckButton, text='PDF', var=self.checkValuePdf)
+        self.checkEditPdf = Checkbutton(self.labelFrameCheckButton,
+                                        text='PDF',
+                                        var=self.checkValuePdf,
+                                        command=lambda: print('pdf')
+                                        )
         self.checkEditPdf.grid(row=0, column=0, sticky=W)
 
         self.checkValueJpg = BooleanVar()
         self.checkValueJpg.set(True)
-        self.checkEditJpg = Checkbutton(self.labelFrameCheckButton, text='JPG', var=self.checkValueJpg)
+        self.checkEditJpg = Checkbutton(self.labelFrameCheckButton,
+                                        text='JPG',
+                                        var=self.checkValueJpg,
+                                        command=lambda: print('Jpg')
+                                        )
         self.checkEditJpg.grid(row=0, column=1, sticky=W)
 
         self.checkValueJpeg = BooleanVar()
         self.checkValueJpeg.set(True)
-        self.checkEditJpeg = Checkbutton(self.labelFrameCheckButton, text='JPEG', var=self.checkValueJpeg)
+        self.checkEditJpeg = Checkbutton(self.labelFrameCheckButton,
+                                         text='JPEG',
+                                         var=self.checkValueJpeg,
+                                         command=lambda: print('Jpeg')
+                                         )
         self.checkEditJpeg.grid(row=1, column=0, sticky=W)
 
         self.checkValuePng = BooleanVar()
         self.checkValuePng.set(True)
-        self.checkEditPng = Checkbutton(self.labelFrameCheckButton, text='PNG', var=self.checkValuePng)
+        self.checkEditPng = Checkbutton(self.labelFrameCheckButton,
+                                        text='PNG',
+                                        var=self.checkValuePng,
+                                        command=lambda: print('Png')
+                                        )
         self.checkEditPng.grid(row=1, column=1, sticky=W)
 
     def __top_level_db(self):
