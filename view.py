@@ -1,5 +1,5 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar, Toplevel, Entry
+from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar, Toplevel, Entry, Checkbutton, LabelFrame
 
 E = tk.E
 W = tk.W
@@ -9,22 +9,40 @@ S = tk.S
 
 class View(tk.Tk):
 
+    def __label_frame(self):
+        self.labelFramePastaArquivos = LabelFrame(text='Pasta e arquivos')
+        self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, sticky=W)
+
+        self.labelFrameCheckButton = LabelFrame(text='Arquivos Permitos')
+        self.labelFrameCheckButton.grid(row=3, column=0, pady=4, padx=4, sticky=W)
+
+        self.labelFrameInformacoes = LabelFrame(text='Informações')
+        self.labelFrameInformacoes.grid(row=3, column=1, pady=4, padx=4, sticky=W)
+
     def __labels(self):
         self.lblfolderText = StringVar()
         self.lblfolderText.set('0 arquivos adicionados')
-        self.lblAdicionados = Label(self, textvariable=self.lblfolderText)
+        self.lblAdicionados = Label(self.labelFramePastaArquivos, textvariable=self.lblfolderText)
         self.lblAdicionados.grid(row=1, column=1, pady=4, padx=4, sticky=E)
 
-        self.lblfolder = Label(self, text='Pasta :')
+        self.lblfolder = Label(self.labelFramePastaArquivos, text='Pasta :')
         self.lblfolder.grid(row=1, column=0, pady=4, padx=4)
 
-        self.lblPasta = Label(self, text='Nº de arquivos :')
+        self.lblPasta = Label(self.labelFramePastaArquivos, text='Nº de arquivos :')
         self.lblPasta.grid(row=2, column=0, pady=4, padx=4)
 
         self.lblPastaText = StringVar()
         self.lblPastaText.set('0 arquivos adicionados')
-        self.lblPastaC = Label(self, textvariable=self.lblPastaText)
+        self.lblPastaC = Label(self.labelFramePastaArquivos, textvariable=self.lblPastaText)
         self.lblPastaC.grid(row=2, column=1, pady=4, padx=4, sticky=W)
+
+        self.lblBanco = Label(self.labelFrameInformacoes, text='Banco: ')
+        self.lblBanco.grid(row=0, column=0, pady=4, padx=4, sticky=W)
+
+        self.lblBancoConectadoText = StringVar()
+        self.lblBancoConectadoText.set('Não conectado')
+        self.lblBancoConectado = Label(self.labelFrameInformacoes, textvariable=self.lblBancoConectadoText)
+        self.lblBancoConectado.grid(row=0, column=1, pady=4, padx=4, sticky=W)
 
     def __entradas(self):
         pass
@@ -44,6 +62,27 @@ class View(tk.Tk):
         self.db = Menu(self.menu, tearoff=0)
         self.menu.add_cascade(label='DB', menu=self.db)
         self.db.add_command(label='Config', command=lambda: self.__top_level_db())
+
+    def __check_button(self):
+        self.checkValuePdf = BooleanVar()
+        self.checkValuePdf.set(True)
+        self.checkEditPdf = Checkbutton(self.labelFrameCheckButton, text='PDF', var=self.checkValuePdf)
+        self.checkEditPdf.grid(row=0, column=0, sticky=W)
+
+        self.checkValueJpg = BooleanVar()
+        self.checkValueJpg.set(True)
+        self.checkEditJpg = Checkbutton(self.labelFrameCheckButton, text='JPG', var=self.checkValueJpg)
+        self.checkEditJpg.grid(row=0, column=1, sticky=W)
+
+        self.checkValueJpeg = BooleanVar()
+        self.checkValueJpeg.set(True)
+        self.checkEditJpeg = Checkbutton(self.labelFrameCheckButton, text='JPEG', var=self.checkValueJpeg)
+        self.checkEditJpeg.grid(row=1, column=0, sticky=W)
+
+        self.checkValuePng = BooleanVar()
+        self.checkValuePng.set(True)
+        self.checkEditPng = Checkbutton(self.labelFrameCheckButton, text='PNG', var=self.checkValuePng)
+        self.checkEditPng.grid(row=1, column=1, sticky=W)
 
     def __top_level_db(self):
         self.topLevelVariables = list(self.controller.top_read_level_variables())
@@ -124,11 +163,12 @@ class View(tk.Tk):
         self.controller = controller
 
         self.title('Doctor OCR')
-        self.geometry('400x150')
+        self.geometry('500x200')
         self.resizable(False, False)
 
+        self.__label_frame()
         self.__menu()
         self.__botoes()
         self.__entradas()
         self.__labels()
-
+        self.__check_button()
