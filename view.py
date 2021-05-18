@@ -72,6 +72,7 @@ class View(tk.Tk):
         self.checkValuePdf.set(True)
         self.checkEditPdf = Checkbutton(self.labelFrameCheckButton,
                                         text='PDF',
+                                        state='active',
                                         var=self.checkValuePdf,
                                         command=lambda: self.controller.setar_arquivos_permitidos('pdf')
                                         )
@@ -81,6 +82,7 @@ class View(tk.Tk):
         self.checkValueJpg.set(True)
         self.checkEditJpg = Checkbutton(self.labelFrameCheckButton,
                                         text='JPG',
+                                        state='active',
                                         var=self.checkValueJpg,
                                         command=lambda: self.controller.setar_arquivos_permitidos('jpg')
                                         )
@@ -90,6 +92,7 @@ class View(tk.Tk):
         self.checkValueJpeg.set(True)
         self.checkEditJpeg = Checkbutton(self.labelFrameCheckButton,
                                          text='JPEG',
+                                         state='active',
                                          var=self.checkValueJpeg,
                                          command=lambda: self.controller.setar_arquivos_permitidos('jpeg')
                                          )
@@ -99,6 +102,7 @@ class View(tk.Tk):
         self.checkValuePng.set(True)
         self.checkEditPng = Checkbutton(self.labelFrameCheckButton,
                                         text='PNG',
+                                        state='active',
                                         var=self.checkValuePng,
                                         command=lambda: self.controller.setar_arquivos_permitidos('png')
                                         )
@@ -165,14 +169,14 @@ class View(tk.Tk):
     def text(self, widget, texto):
         widget.set(texto)
 
+    def teste(self, a):
+        print(a.split())
+
     def allow_button(self, widget):
         widget['state'] = 'active'
 
     def forbid_button(self, widget):
         widget['state'] = 'disabled'
-
-    def teste(self, a):
-        print(a.split())
 
     def main(self):
         self.mainloop()

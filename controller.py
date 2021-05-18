@@ -28,24 +28,27 @@ class Controller:
 
     def setar_destino(self, arquivo):
         if arquivo == '':
-            self.visual.message(self.setar_destino, 'Você não marcou uma pasta')
+            self.visual.message(self.setar_destino, 'Selecione uma pasta')
+        elif len(self.modelo.arquivosPermitidosNaLista) > 0:
+            self.visual.message(self.setar_destino, 'Você já adicionou os arquivos')
         else:
             self.modelo.destino = arquivo
             self.visual.text(self.visual.lblfolderText, self.modelo.destino)
             self.visual.text(self.visual.lblPastaText, self.modelo.contar_arquivos())
-            self.visual.allow_button(self.visual.btnOcr)
+            for button in [self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
+                           self.visual.checkEditPng, self.visual.checkEditJpeg]:
+                self.visual.allow_button(button)
 
     def iniciar_ocr(self):
-        if self.modelo.arquivosGuardados == 0:
+        for button in [self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
+                       self.visual.checkEditPng, self.visual.checkEditJpeg]:
+            self.visual.forbid_button(button)
+        if self.modelo.arquivosGuardadosNoContagem == 0:
             self.visual.message(self.iniciar_ocr, 'Não há arquivos adicionados')
         else:
-            for buttons in [self.visual.btnOcr, self.visual.checkEditJpeg,
-                            self.visual.checkEditJpg, self.visual.checkEditPdf,
-                            self.visual.checkEditPng]:
-                self.visual.forbid_button(buttons)
-
-            for i in self.modelo.arquivosPermitidos:
+            for i in self.modelo.arquivosPermitidosNaLista:
                 self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
+            self.modelo.arquivosPermitidosNaLista = []
 
     def __init__(self):
         self.visual = View(self)

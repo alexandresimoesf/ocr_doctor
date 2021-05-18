@@ -9,6 +9,7 @@ from base.facade import Repository
 
 class Model:
 
+
     @staticmethod
     def config_file_get() -> List[Tuple[str, str]]:
         config = configparser.ConfigParser()
@@ -46,9 +47,9 @@ class Model:
             if not os.path.splitext(i)[1][1:] in self.extensoesPermitidos:
                 continue
             else:
-                self.arquivosPermitidos.append(i)
-        self.arquivosGuardados = len(self.arquivosPermitidos)
-        return self.arquivosGuardados
+                self.arquivosPermitidosNaLista.append(i)
+        self.arquivosGuardadosNoContagem = len(self.arquivosPermitidosNaLista)
+        return self.arquivosGuardadosNoContagem
 
     def arquivos_permitidos(self, arquivo):
         if arquivo in self.extensoesPermitidos:
@@ -57,8 +58,8 @@ class Model:
             self.extensoesPermitidos.append(arquivo)
 
     def __init__(self):
-        self.arquivosGuardados: int = 0
-        self.arquivosPermitidos: list = []
+        self.arquivosGuardadosNoContagem: int = 0
+        self.arquivosPermitidosNaLista: list = []
         self.extensoesPermitidos: list = ['pdf', 'jpg', 'png', 'jpeg']
         self.salvarEm: str = 'C:/Users/Particular/PycharmProjects/ocr/documentos'
         self.destino: str = ''
