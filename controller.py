@@ -36,7 +36,7 @@ class Controller:
             self.visual.allow_button(self.visual.btnOcr)
 
     def iniciar_ocr(self):
-        if self.modelo.contar_arquivos() == 0:
+        if self.modelo.arquivosGuardados == 0:
             self.visual.message(self.iniciar_ocr, 'Não há arquivos adicionados')
         else:
             for buttons in [self.visual.btnOcr, self.visual.checkEditJpeg,

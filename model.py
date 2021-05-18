@@ -47,7 +47,8 @@ class Model:
                 continue
             else:
                 self.arquivosPermitidos.append(i)
-        return len(self.arquivosPermitidos)
+        self.arquivosGuardados = len(self.arquivosPermitidos)
+        return self.arquivosGuardados
 
     def arquivos_permitidos(self, arquivo):
         if arquivo in self.extensoesPermitidos:
@@ -56,6 +57,7 @@ class Model:
             self.extensoesPermitidos.append(arquivo)
 
     def __init__(self):
+        self.arquivosGuardados: int = 0
         self.arquivosPermitidos: list = []
         self.extensoesPermitidos: list = ['pdf', 'jpg', 'png', 'jpeg']
         self.salvarEm: str = 'C:/Users/Particular/PycharmProjects/ocr/documentos'
