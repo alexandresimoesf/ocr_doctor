@@ -49,6 +49,9 @@ class Controller:
             for i in self.modelo.arquivosPermitidosNaLista:
                 self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
             self.modelo.arquivosPermitidosNaLista = []
+            for button in [self.visual.checkEditPdf, self.visual.checkEditJpg,
+                           self.visual.checkEditPng, self.visual.checkEditJpeg]:
+                self.visual.allow_button(button)
 
     def __init__(self):
         self.visual = View(self)
