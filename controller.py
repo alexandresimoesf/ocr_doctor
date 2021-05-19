@@ -19,7 +19,7 @@ class Controller:
 
     @top_set_level_variables
     def top_level_login(self, arg):
-        self.visual.forbid_button(self.visual.topLevelBtnConectar)
+        self.visual.mudar_estado_botao(self.visual.topLevelBtnConectar)
         self.visual.text(self.visual.topLevelVarConectar, arg)
 
     def top_read_level_variables(self) -> List[Tuple[str, str]]:
