@@ -9,7 +9,6 @@ from base.facade import Repository
 
 class Model:
 
-
     @staticmethod
     def config_file_get() -> List[Tuple[str, str]]:
         config = configparser.ConfigParser()
