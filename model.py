@@ -40,9 +40,6 @@ class Model:
         pass
 
     def contar_arquivos(self) -> int:
-        '''
-        :return: Retorna a contagem de todos os arquivos na pasta
-        '''
         for i in os.listdir(self.destino):
             if not os.path.splitext(i)[1][1:] in self.extensoesPermitidos:
                 continue

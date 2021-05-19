@@ -1,6 +1,6 @@
 import tkinter as tk
-from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar,\
-                    Toplevel, Entry, Checkbutton, LabelFrame, messagebox
+from tkinter import Button, Menu, filedialog, Label, StringVar, BooleanVar, \
+    Toplevel, Entry, Checkbutton, LabelFrame, messagebox
 
 E = tk.E
 W = tk.W
@@ -15,7 +15,7 @@ class View(tk.Tk):
 
     def __label_frame(self):
         self.labelFramePastaArquivos = LabelFrame(text='Pasta e arquivos')
-        self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, columnspan=2, sticky=W)
+        self.labelFramePastaArquivos.grid(row=1, column=0, pady=4, padx=4, columnspan=4, sticky=W)
 
         self.labelFrameCheckButton = LabelFrame(text='Arquivos Permitos')
         self.labelFrameCheckButton.grid(row=2, column=0, pady=4, padx=4, sticky=W)
@@ -175,13 +175,12 @@ class View(tk.Tk):
     @staticmethod
     def mudar_estado_botao(*button):
         estado: dict = {
-                  'active': 'disabled',
-                  'disabled': 'active',
-                  'normal': 'disabled'
-                }
+            'active': 'disabled',
+            'disabled': 'active',
+            'normal': 'disabled'
+        }
         for btn in button:
             btn['state'] = estado[btn['state']]
-
 
     def main(self):
         self.mainloop()

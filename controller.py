@@ -15,8 +15,6 @@ class Controller:
     def main(self):
         self.visual.main()
 
-
-
     @top_set_level_variables
     def top_level_login(self, arg):
         self.visual.mudar_estado_botao(self.visual.topLevelBtnConectar)
