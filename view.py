@@ -172,11 +172,16 @@ class View(tk.Tk):
     def teste(self, a):
         print(a.split())
 
-    def allow_button(self, widget):
-        widget['state'] = 'active'
+    @staticmethod
+    def mudar_estado_botao(*button):
+        estado: dict = {
+                  'active': 'disabled',
+                  'disabled': 'active',
+                  'normal': 'disabled'
+                }
+        for btn in button:
+            btn['state'] = estado[btn['state']]
 
-    def forbid_button(self, widget):
-        widget['state'] = 'disabled'
 
     def main(self):
         self.mainloop()

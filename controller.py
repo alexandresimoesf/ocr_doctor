@@ -15,6 +15,8 @@ class Controller:
     def main(self):
         self.visual.main()
 
+
+
     @top_set_level_variables
     def top_level_login(self, arg):
         self.visual.forbid_button(self.visual.topLevelBtnConectar)
@@ -35,23 +37,20 @@ class Controller:
             self.modelo.destino = arquivo
             self.visual.text(self.visual.lblfolderText, self.modelo.destino)
             self.visual.text(self.visual.lblPastaText, self.modelo.contar_arquivos())
-            for button in [self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
-                           self.visual.checkEditPng, self.visual.checkEditJpeg]:
-                self.visual.allow_button(button)
+            self.visual.mudar_estado_botao(self.visual.btnOcr, self.visual.checkEditPdf,
+                                           self.visual.checkEditJpg, self.visual.checkEditPng,
+                                           self.visual.checkEditJpeg)
 
     def iniciar_ocr(self):
-        for button in [self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
-                       self.visual.checkEditPng, self.visual.checkEditJpeg]:
-            self.visual.forbid_button(button)
+        self.visual.mudar_estado_botao(self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
+                                       self.visual.checkEditPng, self.visual.checkEditJpeg)
+
         if self.modelo.arquivosGuardadosNoContagem == 0:
             self.visual.message(self.iniciar_ocr, 'Não há arquivos adicionados')
         else:
             for i in self.modelo.arquivosPermitidosNaLista:
                 self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
             self.modelo.arquivosPermitidosNaLista = []
-            for button in [self.visual.checkEditPdf, self.visual.checkEditJpg,
-                           self.visual.checkEditPng, self.visual.checkEditJpeg]:
-                self.visual.allow_button(button)
 
     def __init__(self):
         self.visual = View(self)
