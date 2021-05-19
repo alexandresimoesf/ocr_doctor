@@ -4,6 +4,7 @@ import configparser
 
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
+from pdfparaimagem.pdfemimagem import PdfParaImagem as PdfImg
 from base.facade import Repository
 
 
@@ -28,10 +29,12 @@ class Model:
         configfile.close()
         return 'Falta implementar DB'
 
-    @staticmethod
-    def ler(arquivo) -> List:
+    def ler(self, arquivo) -> List:
         if os.path.splitext(arquivo)[1][1:] == 'pdf':
-            return Pdf.ler_pdf(arquivo)
+            if self.pdfParaImagemVar:
+                return PdfImg.pdf_para_imagem(arquivo)
+            else:
+                return Pdf.ler_pdf(arquivo)
         else:
             return Img.ler_imagem(arquivo)
 
@@ -55,6 +58,7 @@ class Model:
 
     def __init__(self):
         self.arquivosGuardadosNoContagem: int = 0
+        self.pdfParaImagemVar: bool = False
         self.arquivosPermitidosNaLista: list = []
         self.extensoesPermitidos: list = ['pdf', 'jpg', 'png', 'jpeg']
         self.salvarEm: str = 'C:/Users/Particular/PycharmProjects/ocr/documentos'

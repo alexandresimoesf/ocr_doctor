@@ -37,11 +37,12 @@ class Controller:
             self.visual.text(self.visual.lblPastaText, self.modelo.contar_arquivos())
             self.visual.mudar_estado_botao(self.visual.btnOcr, self.visual.checkEditPdf,
                                            self.visual.checkEditJpg, self.visual.checkEditPng,
-                                           self.visual.checkEditJpeg)
+                                           self.visual.checkEditJpeg, self.visual.checkEditPdfImg)
 
     def iniciar_ocr(self):
-        self.visual.mudar_estado_botao(self.visual.btnOcr, self.visual.checkEditPdf, self.visual.checkEditJpg,
-                                       self.visual.checkEditPng, self.visual.checkEditJpeg)
+        self.visual.mudar_estado_botao(self.visual.btnOcr, self.visual.checkEditPdf,
+                                       self.visual.checkEditJpg, self.visual.checkEditPng,
+                                       self.visual.checkEditJpeg, self.visual.checkEditPdfImg)
 
         if self.modelo.arquivosGuardadosNoContagem == 0:
             self.visual.message(self.iniciar_ocr, 'Não há arquivos adicionados')
@@ -49,6 +50,9 @@ class Controller:
             for i in self.modelo.arquivosPermitidosNaLista:
                 self.visual.teste(self.modelo.ler(self.modelo.destino + '/' + i))
             self.modelo.arquivosPermitidosNaLista = []
+
+    def pdf_para_imagem(self):
+        self.modelo.pdfParaImagemVar = not self.modelo.pdfParaImagemVar
 
     def __init__(self):
         self.visual = View(self)

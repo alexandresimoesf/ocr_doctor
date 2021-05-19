@@ -21,7 +21,10 @@ class View(tk.Tk):
         self.labelFrameCheckButton.grid(row=2, column=0, pady=4, padx=4, sticky=W)
 
         self.labelFrameInformacoes = LabelFrame(text='Informações')
-        self.labelFrameInformacoes.grid(row=2, column=1, pady=4, padx=4, sticky=W)
+        self.labelFrameInformacoes.grid(row=2, column=2, pady=4, padx=4, sticky=W)
+
+        self.labelFrameOpcoes = LabelFrame(text='Opções')
+        self.labelFrameOpcoes.grid(row=2, column=1, pady=4, padx=4, sticky=W)
 
     def __labels(self):
         self.lblfolderText = StringVar()
@@ -108,6 +111,13 @@ class View(tk.Tk):
                                         )
         self.checkEditPng.grid(row=1, column=1, sticky=W)
 
+        self.checkEditPdfImg = Checkbutton(self.labelFrameOpcoes,
+                                           text='Transformar pdf em imagem',
+                                           state='active',
+                                           command=lambda: self.controller.pdf_para_imagem()
+                                           )
+        self.checkEditPdfImg.grid(row=0, column=0, sticky=W)
+
     def __top_level_db(self):
         self.topLevelVariables = list(self.controller.top_read_level_variables())
 
@@ -170,7 +180,8 @@ class View(tk.Tk):
         widget.set(texto)
 
     def teste(self, a):
-        print(a.split())
+        print(a)
+        print('#' * 30)
 
     @staticmethod
     def mudar_estado_botao(*button):

@@ -5,15 +5,11 @@ class PdfReader:
 
     @staticmethod
     def ler_pdf(arquivo):
-        '''
-        :param arquivo: Pasta onde estão os arquivos
-        :return: Retorna o texto que está no pdf
-        '''
 
-        file = open(arquivo, 'rb')
-
-
-        fileReader = pdf.PdfFileReader(file)
-
-
-        return fileReader.numPages
+        pdf_file = open(arquivo, 'rb')
+        read_pdf = pdf.PdfFileReader(pdf_file)
+        number_of_pages = read_pdf.getNumPages()
+        page = read_pdf.getPage(0)
+        page_content = page.extractText()
+        return page_content.encode('utf-8')
+        # return fileReader.numPages

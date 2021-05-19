@@ -1,0 +1,1 @@
+from .pdfemimagem import PdfParaImagem
