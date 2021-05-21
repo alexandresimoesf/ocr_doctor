@@ -4,7 +4,6 @@ import configparser
 
 from pdf.apenaspdf import PdfReader as Pdf
 from imagem.apenasimg import ImgReader as Img
-from pdfparaimagem.pdfemimagem import PdfParaImagem as PdfImg
 from base.facade import Repository
 
 
@@ -30,11 +29,8 @@ class Model:
         return 'Falta implementar DB'
 
     def ler(self, arquivo) -> List:
-        if os.path.splitext(arquivo)[1][1:] == 'pdf':
-            if self.pdfParaImagemVar:
-                return PdfImg.pdf_para_imagem(arquivo)
-            else:
-                return Pdf.ler_pdf(arquivo)
+        if os.path.splitext(arquivo)[1][1:] == 'pdf' and self.pdfParaImagemVar != False:
+            return Pdf.ler_pdf(arquivo)
         else:
             return Img.ler_imagem(arquivo)
 

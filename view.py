@@ -112,7 +112,7 @@ class View(tk.Tk):
         self.checkEditPng.grid(row=1, column=1, sticky=W)
 
         self.checkEditPdfImg = Checkbutton(self.labelFrameOpcoes,
-                                           text='Transformar pdf em imagem',
+                                           text='Ler pdf como imagem',
                                            state='active',
                                            command=lambda: self.controller.pdf_para_imagem()
                                            )
