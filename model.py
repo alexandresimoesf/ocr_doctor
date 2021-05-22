@@ -29,10 +29,13 @@ class Model:
         return 'Falta implementar DB'
 
     def ler(self, arquivo) -> List:
-        if os.path.splitext(arquivo)[1][1:] == 'pdf' and self.pdfParaImagemVar != False:
-            return Pdf.ler_pdf(arquivo)
-        else:
-            return Img.ler_imagem(arquivo)
+        try:
+            if os.path.splitext(arquivo)[1][1:] == 'pdf' and self.pdfParaImagemVar == False:
+                return Pdf.ler_pdf(arquivo)
+            else:
+                return Img.ler_imagem(arquivo)
+        except:
+            return arquivo + ' falhou.'
 
     def login_bd_postgres(self):
         pass

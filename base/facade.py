@@ -20,7 +20,7 @@ class Repository:
         self.insert.insert_single_element()
 
     def insert_many(self):
-        self.insert.select_many_elements()
+        self.insert.insert_many_elements()
 
     def delete_one(self):
         self.delete.delete_single_element()
