@@ -59,7 +59,6 @@ class Controller:
         self.visual = dependence(self)
 
 
-
 if __name__ == '__main__':
     software = Controller(ViewTk)
     software.main()

@@ -69,7 +69,7 @@ class ViewTk(tk.Tk, View):
 
         self.db = Menu(self.menu, tearoff=0)
         self.menu.add_cascade(label='DB', menu=self.db)
-        self.db.add_command(label='Config', command=lambda: self.__top_level_db())
+        self.db.add_command(label='Config', command=lambda: self.top_level_db())
 
     def check_button(self):
         self.checkValuePdf = BooleanVar()
@@ -206,9 +206,10 @@ class ViewTk(tk.Tk, View):
         self.geometry('500x200')
         self.resizable(False, False)
 
+
         self.label_frame()
-        self.menu()
         self.botoes()
         self.entradas()
         self.labels()
         self.check_button()
+        self.menu()
