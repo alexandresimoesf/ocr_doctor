@@ -1,3 +1,3 @@
 from controller import Controller
-from view import View
+from viewtk import View
 from model import Model

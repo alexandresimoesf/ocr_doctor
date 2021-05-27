@@ -1,4 +1,4 @@
-from view import View
+from viewtk import ViewTk
 from model import Model
 from typing import List, Tuple
 
@@ -54,11 +54,12 @@ class Controller:
     def pdf_para_imagem(self):
         self.modelo.pdfParaImagemVar = not self.modelo.pdfParaImagemVar
 
-    def __init__(self):
-        self.visual = View(self)
+    def __init__(self, dependence):
         self.modelo = Model()
+        self.visual = dependence(self)
+
 
 
 if __name__ == '__main__':
-    software = Controller()
+    software = Controller(ViewTk)
     software.main()
